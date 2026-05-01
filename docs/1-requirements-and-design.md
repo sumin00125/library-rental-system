@@ -184,5 +184,5 @@ Milestone은 선택 사항이지만, 프로젝트 관리를 위해 다음과 같
 - 기능 구성 및 요구사항 구체화
 - GitHub Repository 생성 및 관리
 - 협업을 위한 Issue 생성 및 관리
-- README.md 및 docs 문서 수정 및 정리
+- docs 문서 수정 및 정리
 - 화면 설계 구조 검토 및 개선
