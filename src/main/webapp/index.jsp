@@ -11,8 +11,12 @@
 
 <h1>도서 대여 시스템</h1>
 
-<button onclick="location.href='bookForm.jsp'">
+<button onclick="location.href='book?action=form'">
 도서 등록
+</button>
+
+<button onclick="location.href='book?action=list'">
+도서 목록
 </button>
 
 </body>
