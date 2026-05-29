@@ -38,10 +38,17 @@ public class BookController extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
+  protected void doPost(HttpServletRequest request,
+          HttpServletResponse response)
+          throws ServletException, IOException {
 
-        doGet(request, response);
-    }
-}
+      request.setCharacterEncoding("UTF-8");
+
+      String title = request.getParameter("title");
+      String author = request.getParameter("author");
+
+      System.out.println(title);
+      System.out.println(author);
+
+      response.sendRedirect("bookList.jsp");
+  }
