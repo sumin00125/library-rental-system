@@ -11,7 +11,7 @@
 
 <h2>도서 등록</h2>
 
-<form action="#" method="post">
+<form action="book" method="post">
 
 도서명 :
 <input type="text" name="title"><br><br>
