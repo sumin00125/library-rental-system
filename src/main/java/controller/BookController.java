@@ -36,7 +36,14 @@ public class BookController extends HttpServlet {
 
             response.sendRedirect("bookForm.jsp");
         }
-    }
+    } else if(action.equals("update")) {
+
+    response.sendRedirect("bookForm.jsp");
+
+} else if(action.equals("delete")) {
+
+    response.sendRedirect("bookList.jsp");
+}
 
   protected void doPost(HttpServletRequest request,
           HttpServletResponse response)
