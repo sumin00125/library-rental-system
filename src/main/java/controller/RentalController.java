@@ -2,11 +2,11 @@ package controller;
 
 import java.io.IOException;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/rental")
 public class RentalController extends HttpServlet {
@@ -17,30 +17,32 @@ public class RentalController extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
 
-        if (action == null) {
+        if(action == null) {
 
             response.sendRedirect("index.jsp");
 
-        } else if (action.equals("list")) {
+        } else if(action.equals("list")) {
 
             response.sendRedirect("rentalList.jsp");
 
-        } else if (action.equals("rent")) {
+        } else if(action.equals("rent")) {
 
             response.sendRedirect("rentalForm.jsp");
 
-        } else if (action.equals("return")) {
+        } else if(action.equals("return")) {
 
             response.sendRedirect("rentalList.jsp");
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
 
         doGet(request, response);
