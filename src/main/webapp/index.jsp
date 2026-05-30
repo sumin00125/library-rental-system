@@ -19,5 +19,13 @@
 도서 목록
 </button>
 
+<button onclick="location.href='rental?action=rent'">
+도서 대여
+</button>
+
+<button onclick="location.href='rental?action=list'">
+대여 목록
+</button>
+
 </body>
 </html>
