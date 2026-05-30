@@ -20,6 +20,7 @@
     <th>ISBN</th>
     <th>카테고리</th>
     <th>수량</th>
+    <th>관리</th>
 </tr>
 
 <tr>
@@ -29,6 +30,11 @@
     <td>123456</td>
     <td>IT</td>
     <td>3</td>
+</tr>
+   <button>상세보기</button>
+   <button>수정</button>
+   <button>삭제</button>
+    </td>
 </tr>
 
 </table>
