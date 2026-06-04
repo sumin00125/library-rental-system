@@ -18,31 +18,32 @@ public class BookController extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
+protected void doGet(HttpServletRequest request,
+        HttpServletResponse response)
+        throws ServletException, IOException {
 
-        String action = request.getParameter("action");
+    String action = request.getParameter("action");
 
-        if(action == null) {
+    if(action == null) {
 
-            response.sendRedirect("index.jsp");
+        response.sendRedirect("index.jsp");
 
-        } else if(action.equals("list")) {
+    } else if(action.equals("list")) {
 
-            response.sendRedirect("bookList.jsp");
+        response.sendRedirect("bookList.jsp");
 
-        } else if(action.equals("form")) {
+    } else if(action.equals("form")) {
 
-            response.sendRedirect("bookForm.jsp");
-        }
+        response.sendRedirect("bookForm.jsp");
+
     } else if(action.equals("update")) {
 
-    response.sendRedirect("bookForm.jsp");
+        response.sendRedirect("bookForm.jsp");
 
-} else if(action.equals("delete")) {
+    } else if(action.equals("delete")) {
 
-    response.sendRedirect("bookList.jsp");
+        response.sendRedirect("bookList.jsp");
+    }
 }
 
   protected void doPost(HttpServletRequest request,
