@@ -29,7 +29,7 @@ ISBN :
 <input type="text" name="category"><br><br>
 
 수량 :
-<input type="number" name="totalCount"><br><br>
+<input type="number" name="quantity"><br><br>
 
 <input type="submit" value="등록">
 

@@ -1,5 +1,7 @@
 package controller;
 
+import dao.BookDAO;
+import dto.BookDTO;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -47,17 +49,34 @@ protected void doGet(HttpServletRequest request,
 }
 
   protected void doPost(HttpServletRequest request,
-          HttpServletResponse response)
-          throws ServletException, IOException {
+        HttpServletResponse response)
+        throws ServletException, IOException {
 
-      request.setCharacterEncoding("UTF-8");
+    request.setCharacterEncoding("UTF-8");
 
-      String title = request.getParameter("title");
-      String author = request.getParameter("author");
+    String title = request.getParameter("title");
+    String author = request.getParameter("author");
+    String publisher = request.getParameter("publisher");
+    String isbn = request.getParameter("isbn");
+    String category = request.getParameter("category");
 
-      System.out.println(title);
-      System.out.println(author);
+    int quantity =
+        Integer.parseInt(
+            request.getParameter("quantity"));
 
-      response.sendRedirect("bookList.jsp");
-  }
+    BookDTO book = new BookDTO();
+
+    book.setTitle(title);
+    book.setAuthor(author);
+    book.setPublisher(publisher);
+    book.setIsbn(isbn);
+    book.setCategory(category);
+    book.setQuantity(quantity);
+
+    BookDAO dao = new BookDAO();
+
+    dao.insertBook(book);
+
+    response.sendRedirect("book?action=list");
+}
 }
