@@ -14,21 +14,17 @@ public class DBConnection {
 
     public static Connection getConnection() {
 
-        Connection conn = null;
-
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            conn = DriverManager.getConnection(
+            return DriverManager.getConnection(
                     URL, USER, PASSWORD);
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
+            return null;
         }
-
-        return conn;
     }
 }
