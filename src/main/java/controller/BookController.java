@@ -44,11 +44,20 @@ protected void doGet(HttpServletRequest request,
 
     } else if(action.equals("delete")) {
 
+        int bookId =
+            Integer.parseInt(
+                request.getParameter("id"));
+
+        BookDAO dao =
+            new BookDAO();
+
+        dao.deleteBook(bookId);
+
         response.sendRedirect("bookList.jsp");
     }
 }
 
-  protected void doPost(HttpServletRequest request,
+protected void doPost(HttpServletRequest request,
         HttpServletResponse response)
         throws ServletException, IOException {
 

@@ -2,6 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import dto.BookDTO;
 import util.DBConnection;
@@ -37,4 +40,84 @@ public class BookDAO {
             e.printStackTrace();
         }
     }
+    public List<BookDTO> getBookList() {
+
+    List<BookDTO> list = new ArrayList<>();
+
+    String sql = "SELECT * FROM book";
+
+    try {
+
+        Connection conn =
+            DBConnection.getConnection();
+
+        PreparedStatement pstmt =
+            conn.prepareStatement(sql);
+
+        ResultSet rs =
+            pstmt.executeQuery();
+
+        while(rs.next()) {
+
+            BookDTO book =
+                new BookDTO();
+
+            book.setBookId(
+                rs.getInt("book_id"));
+
+            book.setTitle(
+                rs.getString("title"));
+
+            book.setAuthor(
+                rs.getString("author"));
+
+            book.setPublisher(
+                rs.getString("publisher"));
+
+            book.setIsbn(
+                rs.getString("isbn"));
+
+            book.setCategory(
+                rs.getString("category"));
+
+            book.setQuantity(
+                rs.getInt("quantity"));
+
+            list.add(book);
+        }
+
+        rs.close();
+        pstmt.close();
+        conn.close();
+
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+    public void deleteBook(int bookId) {
+
+    String sql =
+        "DELETE FROM book WHERE book_id=?";
+
+    try {
+
+        Connection conn =
+            DBConnection.getConnection();
+
+        PreparedStatement pstmt =
+            conn.prepareStatement(sql);
+
+        pstmt.setInt(1, bookId);
+
+        pstmt.executeUpdate();
+
+        pstmt.close();
+        conn.close();
+
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
 }
