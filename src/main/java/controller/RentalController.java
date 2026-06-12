@@ -1,5 +1,8 @@
 package controller;
 
+import dao.RentalDAO;
+import dto.RentalDTO;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -45,6 +48,31 @@ public class RentalController extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        doGet(request, response);
+        request.setCharacterEncoding("UTF-8");
+
+        String bookTitle =
+            request.getParameter("bookTitle");
+
+        String borrower =
+            request.getParameter("borrower");
+
+        String rentalDate =
+            request.getParameter("rentalDate");
+
+        RentalDTO rental =
+            new RentalDTO();
+
+        rental.setBookTitle(bookTitle);
+        rental.setBorrower(borrower);
+        rental.setRentalDate(rentalDate);
+        rental.setReturnDate(null);
+
+        RentalDAO dao =
+            new RentalDAO();
+
+        dao.addRental(rental);
+
+        response.sendRedirect(
+            "rental?action=list");
     }
 }
