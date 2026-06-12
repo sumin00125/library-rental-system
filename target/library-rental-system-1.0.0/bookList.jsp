@@ -47,7 +47,7 @@ for(BookDTO book : bookList){
     <td>
         <button>상세보기</button>
         <button onclick="location.href='book?action=update'">수정</button>
-        <button onclick="location.href='book?action=delete'">삭제</button>
+        <button onclick="location.href='book?action=delete&id=<%=book.getBookId()%>'">삭제</button>
     </td>
 </tr>
 

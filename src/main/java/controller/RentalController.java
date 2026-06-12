@@ -59,6 +59,26 @@ public class RentalController extends HttpServlet {
         String rentalDate =
             request.getParameter("rentalDate");
 
+        if(bookTitle != null) {
+            bookTitle = bookTitle.trim();
+        }
+
+        if(borrower != null) {
+            borrower = borrower.trim();
+        }
+
+        if(rentalDate != null) {
+            rentalDate = rentalDate.trim();
+        }
+
+        if(bookTitle == null || bookTitle.isEmpty()
+                || borrower == null || borrower.isEmpty()
+                || rentalDate == null || rentalDate.isEmpty()) {
+
+            response.sendRedirect("rentalForm.jsp");
+            return;
+        }
+
         RentalDTO rental =
             new RentalDTO();
 
