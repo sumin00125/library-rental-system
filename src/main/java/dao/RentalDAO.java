@@ -91,4 +91,29 @@ public class RentalDAO {
 
         return list;
     }
+
+    public void returnBook(int rentalId) {
+
+        String sql =
+            "UPDATE rental SET return_date = CURDATE() WHERE rental_id=?";
+
+        try {
+
+            Connection conn =
+                DBConnection.getConnection();
+
+            PreparedStatement pstmt =
+                conn.prepareStatement(sql);
+
+            pstmt.setInt(1, rentalId);
+
+            pstmt.executeUpdate();
+
+            pstmt.close();
+            conn.close();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -40,6 +40,16 @@ public class RentalController extends HttpServlet {
 
         } else if(action.equals("return")) {
 
+            String id = request.getParameter("id");
+
+            if(id != null && !id.trim().isEmpty()) {
+
+                int rentalId = Integer.parseInt(id);
+
+                RentalDAO dao = new RentalDAO();
+                dao.returnBook(rentalId);
+            }
+
             response.sendRedirect("rentalList.jsp");
         }
     }
