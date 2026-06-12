@@ -23,10 +23,12 @@
 <table border="1">
 
 <tr>
+    <th>ID</th>
     <th>도서명</th>
     <th>대여자</th>
     <th>대여일</th>
-    <th>반납예정일</th>
+    <th>반납일</th>
+    <th>관리</th>
 </tr>
 
 <%
@@ -34,10 +36,19 @@ for(RentalDTO rental : rentalList){
 %>
 
 <tr>
+    <td><%= rental.getRentalId() %></td>
     <td><%= rental.getBookTitle() %></td>
     <td><%= rental.getBorrower() %></td>
     <td><%= rental.getRentalDate() %></td>
-    <td><%= rental.getReturnDate() %></td>
+    <td>
+        <%= rental.getReturnDate() == null ? "-" : rental.getReturnDate() %>
+    </td>
+
+    <td>
+        <button onclick="location.href='rental?action=return&id=<%=rental.getRentalId()%>'">
+            반납
+        </button>
+    </td>
 </tr>
 
 <%
