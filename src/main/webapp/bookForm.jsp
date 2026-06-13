@@ -1,39 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title>도서 등록</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
-<h2>도서 등록</h2>
+<div class="container mt-5">
 
-<form action="book" method="post">
+```
+<div class="card">
 
-도서명 :
-<input type="text" name="title"><br><br>
+    <div class="card-header bg-dark text-white">
+        <h3>📚 도서 등록</h3>
+    </div>
 
-저자 :
-<input type="text" name="author"><br><br>
+    <div class="card-body">
 
-출판사 :
-<input type="text" name="publisher"><br><br>
+        <form action="book" method="post">
 
-ISBN :
-<input type="text" name="isbn"><br><br>
+            <div class="mb-3">
+                <label class="form-label">도서명</label>
+                <input type="text"
+                    name="title"
+                    class="form-control">
+            </div>
 
-카테고리 :
-<input type="text" name="category"><br><br>
+            <div class="mb-3">
+                <label class="form-label">저자</label>
+                <input type="text"
+                    name="author"
+                    class="form-control">
+            </div>
 
-수량 :
-<input type="number" name="quantity"><br><br>
+            <div class="mb-3">
+                <label class="form-label">출판사</label>
+                <input type="text"
+                    name="publisher"
+                    class="form-control">
+            </div>
 
-<input type="submit" value="등록">
+            <div class="mb-3">
+                <label class="form-label">ISBN</label>
+                <input type="text"
+                    name="isbn"
+                    class="form-control">
+            </div>
 
-</form>
+            <div class="mb-3">
+                <label class="form-label">카테고리</label>
+                <input type="text"
+                    name="category"
+                    class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">수량</label>
+                <input type="number"
+                    name="quantity"
+                    class="form-control">
+            </div>
+
+            <button type="submit"
+                class="btn btn-primary">
+                등록
+            </button>
+
+            <button type="button"
+                class="btn btn-secondary"
+                onclick="location.href='bookList.jsp'">
+                목록
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
 
 </body>
 </html>
