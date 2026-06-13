@@ -6,89 +6,105 @@ pageEncoding="UTF-8"%>
 <%@ page import="dto.RentalDTO" %>
 
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="UTF-8">
 <title>대여 목록</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
 
 </head>
 <body>
 
 <div class="container mt-5">
 
-```
-<h2 class="mb-4">📋 대여 목록</h2>
-```
+    <h2 class="mb-4">📋 대여 목록</h2>
 
 <%
 RentalDAO dao = new RentalDAO();
 List<RentalDTO> rentalList = dao.getAllRentals();
 %>
 
-```
-<table class="table table-striped table-hover table-bordered align-middle">
+    <table class="table table-striped table-hover table-bordered align-middle">
 
-    <thead class="table-success">
+        <thead class="table-success">
 
-        <tr>
-            <th>ID</th>
-            <th>도서명</th>
-            <th>대여자</th>
-            <th>대여일</th>
-            <th>반납일</th>
-            <th>관리</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>도서명</th>
+                <th>대여자</th>
+                <th>대여일</th>
+                <th>반납일</th>
+                <th>상태</th>
+                <th>관리</th>
+            </tr>
 
-    </thead>
+        </thead>
 
-    <tbody>
-```
+        <tbody>
 
 <%
 for(RentalDTO rental : rentalList){
 %>
 
-```
-        <tr>
+            <tr>
 
-            <td><%= rental.getRentalId() %></td>
-            <td><%= rental.getBookTitle() %></td>
-            <td><%= rental.getBorrower() %></td>
-            <td><%= rental.getRentalDate() %></td>
+                <td><%= rental.getRentalId() %></td>
+                <td><%= rental.getBookTitle() %></td>
+                <td><%= rental.getBorrower() %></td>
+                <td><%= rental.getRentalDate() %></td>
 
-            <td>
-                <%= rental.getReturnDate() == null ? "-" : rental.getReturnDate() %>
-            </td>
+                <td>
+                    <%= rental.getReturnDate() == null ?
+                        "-" : rental.getReturnDate() %>
+                </td>
 
-            <td>
+                <td>
+                    <%= rental.getReturnDate() == null ?
+                        "대여중" : "반납완료" %>
+                </td>
 
-                <button class="btn btn-warning btn-sm"
-                    onclick="location.href='rental?action=return&id=<%=rental.getRentalId()%>'">
-                    반납
-                </button>
+                <td>
 
-            </td>
+<%
+if(rental.getReturnDate() == null){
+%>
 
-        </tr>
-```
+                    <button class="btn btn-warning btn-sm"
+                        onclick="location.href='rental?action=return&id=<%=rental.getRentalId()%>'">
+                        반납
+                    </button>
+
+<%
+} else {
+%>
+
+                    <button class="btn btn-secondary btn-sm"
+                        disabled>
+                        반납완료
+                    </button>
 
 <%
 }
 %>
 
-```
-    </tbody>
+                </td>
 
-</table>
+            </tr>
 
-<button class="btn btn-success"
-    onclick="location.href='rentalForm.jsp'">
-    대여 등록
-</button>
-```
+<%
+}
+%>
+
+        </tbody>
+
+    </table>
+
+    <button class="btn btn-success"
+        onclick="location.href='rentalForm.jsp'">
+        대여 등록
+    </button>
 
 </div>
 
