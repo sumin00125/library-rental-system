@@ -116,4 +116,39 @@ public class RentalDAO {
             e.printStackTrace();
         }
     }
+
+    public boolean isRented(String bookTitle) {
+
+        boolean result = false;
+
+        String sql =
+            "SELECT * FROM rental WHERE book_title=? AND return_date IS NULL";
+
+        try {
+
+            Connection conn =
+                DBConnection.getConnection();
+
+            PreparedStatement pstmt =
+                conn.prepareStatement(sql);
+
+            pstmt.setString(1, bookTitle);
+
+            ResultSet rs =
+                pstmt.executeQuery();
+
+            if(rs.next()) {
+                result = true;
+            }
+
+            rs.close();
+            pstmt.close();
+            conn.close();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

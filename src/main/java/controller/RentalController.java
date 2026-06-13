@@ -44,13 +44,17 @@ public class RentalController extends HttpServlet {
 
             if(id != null && !id.trim().isEmpty()) {
 
-                int rentalId = Integer.parseInt(id);
+                int rentalId =
+                    Integer.parseInt(id);
 
-                RentalDAO dao = new RentalDAO();
+                RentalDAO dao =
+                    new RentalDAO();
+
                 dao.returnBook(rentalId);
             }
 
-            response.sendRedirect("rentalList.jsp");
+            response.sendRedirect(
+                "rentalList.jsp");
         }
     }
 
@@ -85,7 +89,26 @@ public class RentalController extends HttpServlet {
                 || borrower == null || borrower.isEmpty()
                 || rentalDate == null || rentalDate.isEmpty()) {
 
-            response.sendRedirect("rentalForm.jsp");
+            response.sendRedirect(
+                "rentalForm.jsp");
+            return;
+        }
+
+        RentalDAO dao =
+            new RentalDAO();
+
+        if(dao.isRented(bookTitle)) {
+
+
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html; charset=UTF-8");
+
+            response.getWriter().println(
+                "<script>"
+                + "alert('Book already rented.');"
+                + "location.href='rentalForm.jsp';"
+                + "</script>");
+
             return;
         }
 
@@ -96,9 +119,6 @@ public class RentalController extends HttpServlet {
         rental.setBorrower(borrower);
         rental.setRentalDate(rentalDate);
         rental.setReturnDate(null);
-
-        RentalDAO dao =
-            new RentalDAO();
 
         dao.addRental(rental);
 
