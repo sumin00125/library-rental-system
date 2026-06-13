@@ -62,7 +62,9 @@ for(BookDTO book : bookList){
 
             <td>
 
-                <button class="btn btn-success btn-sm">
+            
+                <button class="btn btn-success btn-sm"
+                    onclick="location.href='book?action=detail&id=<%=book.getBookId()%>'">
                     상세보기
                 </button>
 
