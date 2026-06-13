@@ -145,3 +145,9 @@ http://localhost:8080/library-rental-system-1.0.0
 
 본 프로젝트를 통해 JSP, Servlet, JDBC를 활용한 웹 애플리케이션 개발 과정을 경험할 수 있었다. MVC(Model 2) 패턴을 적용하여 유지보수성을 높였으며, MySQL 데이터베이스와 연동하여 실제 서비스 형태의 도서 관리 시스템을 구현하였다.
 
+## Release
+
+최종 배포 파일은 GitHub Release(v1.0)에 등록하였다.
+
+- library-rental-system-1.0.0.war
+
