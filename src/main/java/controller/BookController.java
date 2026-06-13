@@ -2,6 +2,7 @@ package controller;
 
 import dao.BookDAO;
 import dto.BookDTO;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,14 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/book")
-
 public class BookController extends HttpServlet {
+private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
-
-    public BookController() {
-        super();
-    }
+public BookController() {
+    super();
+}
 
 protected void doGet(HttpServletRequest request,
         HttpServletResponse response)
@@ -40,7 +39,22 @@ protected void doGet(HttpServletRequest request,
 
     } else if(action.equals("update")) {
 
-        response.sendRedirect("bookForm.jsp");
+        int bookId =
+            Integer.parseInt(
+                request.getParameter("id"));
+
+        BookDAO dao =
+            new BookDAO();
+
+        BookDTO book =
+            dao.getBook(bookId);
+
+        request.setAttribute(
+            "book", book);
+
+        request.getRequestDispatcher(
+            "bookForm.jsp")
+            .forward(request, response);
 
     } else if(action.equals("delete")) {
 
@@ -53,7 +67,8 @@ protected void doGet(HttpServletRequest request,
 
         dao.deleteBook(bookId);
 
-        response.sendRedirect("bookList.jsp");
+        response.sendRedirect(
+            "bookList.jsp");
     }
 }
 
@@ -63,17 +78,30 @@ protected void doPost(HttpServletRequest request,
 
     request.setCharacterEncoding("UTF-8");
 
-    String title = request.getParameter("title");
-    String author = request.getParameter("author");
-    String publisher = request.getParameter("publisher");
-    String isbn = request.getParameter("isbn");
-    String category = request.getParameter("category");
+    String bookId =
+        request.getParameter("bookId");
+
+    String title =
+        request.getParameter("title");
+
+    String author =
+        request.getParameter("author");
+
+    String publisher =
+        request.getParameter("publisher");
+
+    String isbn =
+        request.getParameter("isbn");
+
+    String category =
+        request.getParameter("category");
 
     int quantity =
         Integer.parseInt(
             request.getParameter("quantity"));
 
-    BookDTO book = new BookDTO();
+    BookDTO book =
+        new BookDTO();
 
     book.setTitle(title);
     book.setAuthor(author);
@@ -82,10 +110,23 @@ protected void doPost(HttpServletRequest request,
     book.setCategory(category);
     book.setQuantity(quantity);
 
-    BookDAO dao = new BookDAO();
+    BookDAO dao =
+        new BookDAO();
 
-    dao.insertBook(book);
+    if(bookId == null ||
+            bookId.isEmpty()) {
 
-    response.sendRedirect("book?action=list");
+        dao.insertBook(book);
+
+    } else {
+
+        book.setBookId(
+            Integer.parseInt(bookId));
+
+        dao.updateBook(book);
+    }
+
+    response.sendRedirect(
+        "book?action=list");
 }
 }
